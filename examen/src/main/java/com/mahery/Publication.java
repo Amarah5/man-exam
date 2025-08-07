@@ -14,4 +14,8 @@ public class Publication {
     private String Description;
     private Date datePublication;
     private Utilisateur publière;
+
+    Publication() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

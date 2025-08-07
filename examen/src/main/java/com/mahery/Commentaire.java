@@ -1,17 +1,25 @@
 package com.mahery;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
-@Setter
-@AllArgsConstructor
 public class Commentaire {
-    private int idCommentaire;
-    private  Date dateCOmmentaire;
-    private Utilisateur Commentateur;
+    private String contenu;
+    private Utilisateur auteur;
+    private LocalDateTime date;
 
+    public Commentaire(String contenu, Utilisateur auteur) {
+        this.contenu = contenu;
+        this.auteur = auteur;
+        this.date = LocalDateTime.now();
+
+
+
+
+
+
+        
+    }
 }

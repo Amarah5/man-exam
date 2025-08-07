@@ -1,33 +1,66 @@
 package com.mahery;
 
-
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
-@Setter
 public class Groupe {
-    private String nom;
-    private ArrayList<Utilisateur> listeUtilisateurs= new ArrayList<>();
-    private ArrayList<Publication> listPubliction = new ArrayList<>();
-    private ArrayList<Commentaire>  listCommentaires = new ArrayList<>();
+    private Administrateur administrateur;
+    private List<Utilisateur> membres;
+    private List<Publication> publications;
 
-    public Groupe(String nomGroupe){
-        this.nom= nomGroupe;
+    public Groupe(Administrateur administrateur) {
+        this.administrateur = administrateur;
+        this.membres = new ArrayList<>();
+        this.publications = new ArrayList<>();
+        membres.add(administrateur);
     }
 
-    public List<Publication> searchPubblicationKeyWord(String keyWord){
-
+    public void ajouterMembre(Utilisateur utilisateur) {
+        membres.add(utilisateur);
     }
 
-    public boolean  searchUtilisateurInGroup(Utilisateur utilisateur){
-
+    public boolean supprimerMembre(Utilisateur cible, Utilisateur acteur) {
+        if (acteur instanceof Administrateur && !acteur.equals(cible)) {
+            return membres.remove(cible);
+        }
+        return false;
     }
 
-    public int totalPublicationInGroup(){
-        
+    public void ajouterPublication(Publication pub) {
+        publications.add(pub);
     }
+
+    public boolean supprimerPublication(Publication pub, Utilisateur utilisateur) {
+        if (utilisateur instanceof Moderateur || pub.getAuteur().equals(utilisateur)) {
+            return publications.remove(pub);
+        }
+        return false;
+    }
+
+    public boolean contientUtilisateur(Utilisateur utilisateur) {
+        return membres.contains(utilisateur);
+    }
+
+    public List<Publication> rechercherPublications(String motCle) {
+        return publications.stream()
+                .filter(pub -> pub.getContenu().toLowerCase().contains(motCle.toLowerCase()))
+                .collect(Collectors.toList());
+    }
+
+    public int nombreTotalPublications() {
+        return publications.size();
+    }
+
+    public List<Utilisateur> getMembres() {
+        return membres;
+    }
+
+    public List<Publication> getPublications() {
+        return publications;
+    }
+
 }
-

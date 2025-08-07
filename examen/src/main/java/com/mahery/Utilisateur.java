@@ -1,34 +1,43 @@
 package com.mahery;
 
-import java.util.Date;
+import java.time.LocalDate;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
-@Setter
-@AllArgsConstructor
-public abstract class Utilisateur{
-    private String idUtilisateur;
+public abstract class Utilisateur {
+    private String id;
     private String nomUtilisateur;
     private String email;
-    private Date dateCreation;
-    private Groupe newGroupe;
+    private LocalDate dateCreation;
 
-    public void createPublication(){
-        Publication newPublication = new Publication(idPublication, email, dateCreation, this);
-        newGroupe.setListPubliction(add(newPublication));
+    public Utilisateur(String id, String nomUtilisateur, String email) {
+        this.id = id;
+        this.nomUtilisateur = nomUtilisateur;
+        this.email = email;
+        this.dateCreation = LocalDate.now();
+    }
 
-    };
-    public void commentPublication(){
-        Commentaire newCommentaire = new Commentaire(idCommentaire, dateCreation, this);
-        newGroupe.setListCommentaires(add(newCommentaire));
-        
-    };
-    public  void supprimerPublicationOrCommentaire(){
-        
-    };
-    public abstract  void supprimerUtilisateur();
-    
+ 
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+
+        if (obj == null || !(obj instanceof Utilisateur))
+            return false;
+
+        Utilisateur autre = (Utilisateur) obj;
+
+        return this.id.equals(autre.id) &&
+                this.nomUtilisateur.equals(autre.nomUtilisateur) &&
+                this.email.equals(autre.email);
+    }
+
+
+    @Override
+    public String toString() {
+        return nomUtilisateur + " (" + email + ")";
+    }
 }

@@ -10,7 +10,10 @@ import lombok.Setter;
 @Setter
 public class Groupe {
     private String nom;
-    public ArrayList<Utilisateur> listeUtilisateurs= new ArrayList<>();
+    private ArrayList<Utilisateur> listeUtilisateurs= new ArrayList<>();
+    private ArrayList<Publication> listPubliction = new ArrayList<>();
+    private ArrayList<Commentaire>  listCommentaires = new ArrayList<>();
+
     public Groupe(String nomGroupe){
         this.nom= nomGroupe;
     }

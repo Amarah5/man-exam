@@ -14,14 +14,21 @@ public abstract class Utilisateur{
     private String nomUtilisateur;
     private String email;
     private Date dateCreation;
+    private Groupe newGroupe;
 
     public void createPublication(){
+        Publication newPublication = new Publication(idPublication, email, dateCreation, this);
+        newGroupe.setListPubliction(add(newPublication));
 
     };
     public void commentPublication(){
+        Commentaire newCommentaire = new Commentaire(idCommentaire, dateCreation, this);
+        newGroupe.setListCommentaires(add(newCommentaire));
         
     };
-    public  abstract void supprimerPublicationOrCommentaire();
+    public  void supprimerPublicationOrCommentaire(){
+        
+    };
     public abstract  void supprimerUtilisateur();
     
 }

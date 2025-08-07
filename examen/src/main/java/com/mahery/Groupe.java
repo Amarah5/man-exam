@@ -17,5 +17,17 @@ public class Groupe {
     public Groupe(String nomGroupe){
         this.nom= nomGroupe;
     }
+
+    public List<Publication> searchPubblicationKeyWord(String keyWord){
+
+    }
+
+    public boolean  searchUtilisateurInGroup(Utilisateur utilisateur){
+
+    }
+
+    public int totalPublicationInGroup(){
+        
+    }
 }
 

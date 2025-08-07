@@ -8,6 +8,4 @@ public class Standart extends Administrateur {
         super(idUtilisateur, nomUtilisateur, email, dateCreation);
     }
 
-
-
 }
